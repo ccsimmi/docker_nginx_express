@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  express:
+    image: "express:learning"
+    build:
+      context: .
+      dockerfile: express.Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: express
+
+  nginx:
+    image: "nginx:learning"
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    depends_on:
+      - express
+    ports:
+      - "80:80"
+    container_name: "nginx"
